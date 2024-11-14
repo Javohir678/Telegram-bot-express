@@ -52,6 +52,9 @@ bot.command("greetings", ctx =>
     }),
 )
 bot.launch()
+app.get("/", (req, res) => {
+    res.send("salom")
+})
 
 export const handler = ServerlessHttp(app)
 // app.listen(3000, () => {
