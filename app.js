@@ -1,10 +1,12 @@
 import express from "express"
 import { Telegraf } from "telegraf"
 import { message } from 'telegraf/filters'
+import cors from "cors"
+import ServerlessHttp from "serverless-http"
 const bot = new Telegraf("7653305836:AAGqvMULbh5lkUM-5S-goWY30W7CvNW_zII")
 const app = express()
 
-
+app.use(cors())
 bot.start('start', context => context.reply('Welcome'))
 
 bot.on(message("sticker"), ctx => ctx.reply('😎'))
@@ -51,8 +53,8 @@ bot.command("greetings", ctx =>
 )
 bot.launch()
 
+export const handler = ServerlessHttp(app)
+// app.listen(3000, () => {
+//     console.log('Listening on http://localhost:3000');
 
-app.listen(3000, () => {
-    console.log('Listening on http://localhost:3000');
-
-})
+// })
